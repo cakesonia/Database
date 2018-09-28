@@ -1,3 +1,4 @@
+SELECT c.class, sum(c.number) FROM (
 SELECT DISTINCT class, 
 CASE 
     WHEN EXISTS(SELECT class FROM ships)
@@ -9,4 +10,5 @@ UNION
 SELECT DISTINCT class, COUNT(*) AS number
 FROM classes, outcomes
 WHERE ship = class
-GROUP BY class
+GROUP BY class) AS c 
+GROUP BY c.class
